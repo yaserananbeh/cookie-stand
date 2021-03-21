@@ -1,0 +1,111 @@
+/* .cssTest{
+    color:red;
+} */
+
+div {
+    display: block;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+ul {
+    display: block;
+    /* list-style-type: disc; */
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    font-size: larger;
+}
+
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+header{
+    text-align: center;
+    margin-bottom: 100px;
+    padding: 30px;
+    background-color: rgb(255, 175, 175);
+}
+main{
+    min-height: 100vh;
+    text-align: center;
+}
+a{
+    margin-top: 50px;
+    display: block;
+    border: double 5px rgb(236, 103, 103);
+    border-radius: 15px;
+    background-color: teal;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 30px;
+    height: fit-content;
+    
+    color: black;
+}
+img{
+    margin-bottom: 50px;
+}
+a:hover{
+    background-color: rgb(1, 68, 68);
+    color: white;
+    border: double 10px rgb(245, 0, 0) ;
+    font-size: 50px;
+    transition: 0.4s;
+}
+#container h1 {
+    background-color: grey;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#container p {
+    font-size: 20px;
+    font-weight: 900;
+}
+footer{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 25px;
+    /* height: 50px; */
+    font-weight: bold;
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(255, 175, 175);
+    padding: 15px;
+}
+html {
+    /* background-image: url(https://i.ytimg.com/vi/vV6JpyUlLXc/maxresdefault.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body{
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: rgb(252, 0, 76) 0px 50px 500px;
+}
