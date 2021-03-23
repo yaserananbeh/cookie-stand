@@ -1,12 +1,12 @@
 'use strict';
-// let hourlyTotal=0;
-// let theTotalpruchasedInAllLocation=0;
-let locations=[];
+
+let theTotalpruchasedInAllLocation = 0; // this variable to find the total of the perchased cookies in all location
+let mainTable = document.getElementById('mainTable'); //this to select the table from index.html page
+let locations = [];// this array to hold the name of location everytime we make instance from our constructor
 const workHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 /** This function to make the Head Row in my table */
-function firstRowFunction()
-{
+function firstRowFunction() {
   let mainTable = document.getElementById('mainTable');
   let firstRow = document.createElement('tr');
   mainTable.appendChild(firstRow);
@@ -30,6 +30,7 @@ const Locations = function (name, minNoOfCustomer, maxNoOfCustomer, avgNumberCoo
   this.minNoOfCustomer = minNoOfCustomer;
   this.maxNoOfCustomer = maxNoOfCustomer;
   this.avgNumberCookies = avgNumberCookies;
+  this.cookiesPerHour = [];
   locations.push(this.name);
 };
 Locations.prototype.randomNoCustomers = function (min, max) {
@@ -40,21 +41,15 @@ Locations.prototype.randomNoCustomers = function (min, max) {
 Locations.prototype.numOfPurchesedCookies = function (avg, num) {
   avg = Math.floor(this.avgNumberCookies);
   num = this.randomNoCustomers();
+  this.cookiesPerHour.push(avg * num);
   return avg * num;
 
 };
 /*------------------------------------*/
 /* start render function  */
 /*------------------------------------*/
-// let sumationOfOneIterationArray=[];
-// let sumationOfOneIteration=0;
+
 Locations.prototype.render = function () {
-  // let containerElement =document.getElementById('container');
-  // let h1Element=document.createElement('h1');
-  // containerElement.appendChild(h1Element);
-  // h1Element.textContent=this.name;
-  // let ulElement=document.createElement('ul');
-  // containerElement.appendChild(ulElement);
 
   let mainTable = document.getElementById('mainTable');
   let rowEl = document.createElement('tr');
@@ -65,33 +60,18 @@ Locations.prototype.render = function () {
 
   let sumInThisLocation = 0;
   for (let i = 0; i < workHours.length; i++) {
-    // let liElement= document.createElement('li');
-    // ulElement.appendChild(liElement);
-    // liElement.textContent=`${workHours[i]} Purchesed ${this.numOfPurchesedCookies()} Cookies `;
-
     let varNumOfPurchesdCookies = this.numOfPurchesedCookies();
-
     sumInThisLocation += varNumOfPurchesdCookies;
-    // console.log(varNumOfPurchesdCookies);
     let dataEl = document.createElement('td');
     rowEl.appendChild(dataEl);
-    dataEl.textContent = `${varNumOfPurchesdCookies}`;
-
-    // if(i===0){
-    //   // console.log(varNumOfPurchesdCookies);
-    //   sumationOfOneIteration=sumationOfOneIteration+varNumOfPurchesdCookies;
-    //   // console.log(sumationOfOneIteration);
-    // }
-
+    dataEl.textContent = `${this.cookiesPerHour[i]}`;
   }
-  // console.log('------------------------');
-  // let resultParagraph=document.createElement('p');
-  // containerElement.appendChild(resultParagraph);
-  // resultParagraph.textContent=`Total Purchased Cookies In ${this.name} Is : ${sumInThisLocation}`;
+
   let oneLocationTotal = document.createElement('th');
   rowEl.appendChild(oneLocationTotal);
   oneLocationTotal.textContent = sumInThisLocation;
-  // theTotalpruchasedInAllLocation+=sumInThisLocation;
+  theTotalpruchasedInAllLocation += sumInThisLocation;
+
 };
 
 /**End doing constructor function */
@@ -111,38 +91,35 @@ lima.render();
 
 /** End making instances */
 
+/* start the last row function */
+function lastRow() {
+  const tableHt = document.createElement('th');
+  mainTable.appendChild(tableHt);
+  tableHt.textContent = 'Totals';
+  for (let i = 0; i < workHours.length + 1; i++) {
+    const tableHt = document.createElement('th');
+    mainTable.appendChild(tableHt);
+    let tempN = (seattle.cookiesPerHour[i]) + (tokyo.cookiesPerHour[i]) +
+      (dubai.cookiesPerHour[i]) + (paris.cookiesPerHour[i]) + (lima.cookiesPerHour[i]);
+    tableHt.textContent = tempN;
+    if (i === (workHours.length)) {
+      tableHt.textContent = theTotalpruchasedInAllLocation;
+    }
+  }
+}
+lastRow();
+/*End the last row function */
+
 /** start send data to the homepage  */
 
 /**First list to send the locations  */
-let listOFLocations=document.getElementById('listOFLocations');
-let ulEl=document.createElement('ul');
+let listOFLocations = document.getElementById('listOFLocations');
+let ulEl = document.createElement('ul');
 listOFLocations.appendChild(ulEl);
 for (let i = 0; i < locations.length; i++) {
-  let liEl =document.createElement('li');
+  let liEl = document.createElement('li');
   ulEl.appendChild(liEl);
-  liEl.textContent=locations[i].toUpperCase();
+  liEl.textContent = locations[i].toUpperCase();
 }
+/** End send data to the homepage  */
 
-
-
-/** end send data to the homepage  */
-
-
-// sumationOfOneIterationArray.push(sumationOfOneIteration);
-// console.log(sumationOfOneIterationArray);
-// mainTable= document.getElementById('mainTable');
-// let lastRow=document.createElement('tr');
-// mainTable.appendChild(lastRow);
-
-// for (let i = 0; i < workHours.length+2; i++) {
-//   let tdlastRow=document.createElement('th');
-//   lastRow.appendChild(tdlastRow);
-//   tdlastRow.textContent=sumationOfOneIterationArray[i-1];
-//   if(i===0){
-//     tdlastRow.textContent='Total';
-//   }
-//   else if(i===(workHours.length+1)){
-//     tdlastRow.textContent=theTotalpruchasedInAllLocation;
-//   }
-
-// }
