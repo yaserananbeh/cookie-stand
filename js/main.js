@@ -31,7 +31,7 @@ const Locations = function (name, minNoOfCustomer, maxNoOfCustomer, avgNumberCoo
   this.maxNoOfCustomer = maxNoOfCustomer;
   this.avgNumberCookies = avgNumberCookies;
   this.cookiesPerHour = [];
-  locations.push(this.name);
+  locations.push(this);
 };
 Locations.prototype.randomNoCustomers = function (min, max) {
   min = Math.ceil(this.minNoOfCustomer);
@@ -91,19 +91,49 @@ lima.render();
 
 /** End making instances */
 
+/* Start fetch data from the form and add them to instance */
+
+let mainForm = document.getElementById('mainForm');
+mainForm.addEventListener('submit', addStore);
+function addStore(event) {
+  event.preventDefault();
+  let nameFromUser = event.target.name.value;
+  let minNoOfCustomerFromUser = event.target.minNoOfCustomer.value;
+  let maxNoOfCustomerFromUser = event.target.maxNoOfCustomer.value;
+  let avgNumberCookiesFromUser = event.target.avgNumberCookies.value;
+
+  let numOfRows = mainTable.rows.length;
+  mainTable.deleteRow(numOfRows - 1); //delete the last row that contains the totals
+
+  // console.log(nameFromUser,minNoOfCustomerFromUser,maxNoOfCustomerFromUser,avgNumberCookiesFromUser); //this to check if we fetch the user inputes
+  const store = new Locations(nameFromUser, minNoOfCustomerFromUser, maxNoOfCustomerFromUser, avgNumberCookiesFromUser); // make new instance 
+  store.render();
+  mainForm.reset(); // this to empty the input fields after submit
+  lastRow(); // call the last row again after add the new row to hold the new totals
+}
+
+
+
+/* End fetch data from the form and add them to instance */
+
+
 /* start the last row function */
 function lastRow() {
-  const tableHt = document.createElement('th');
-  mainTable.appendChild(tableHt);
-  tableHt.textContent = 'Totals';
+  const tableRow = document.createElement('tr');
+  mainTable.appendChild(tableRow);
+  const rowTh = document.createElement('th');
+  tableRow.appendChild(rowTh);
+  rowTh.textContent = 'Totals';
   for (let i = 0; i < workHours.length + 1; i++) {
-    const tableHt = document.createElement('th');
-    mainTable.appendChild(tableHt);
-    let tempN = (seattle.cookiesPerHour[i]) + (tokyo.cookiesPerHour[i]) +
-      (dubai.cookiesPerHour[i]) + (paris.cookiesPerHour[i]) + (lima.cookiesPerHour[i]);
-    tableHt.textContent = tempN;
+    const rowTh = document.createElement('th');
+    tableRow.appendChild(rowTh);
+    let tempN = 0;
+    for (let j = 0; j < locations.length; j++) {
+      tempN = tempN + (locations[j].cookiesPerHour[i]);
+    }
+    rowTh.textContent = tempN;
     if (i === (workHours.length)) {
-      tableHt.textContent = theTotalpruchasedInAllLocation;
+      rowTh.textContent = theTotalpruchasedInAllLocation;
     }
   }
 }

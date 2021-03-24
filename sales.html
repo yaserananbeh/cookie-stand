@@ -5,6 +5,23 @@
     <title>Sales Page</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        form {
+            margin-bottom: 20px;
+            width: 50%;
+
+        }
+
+        fieldset {
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        [type="submit"] {
+            margin: 30px;
+            font-size: larger;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,52 +30,32 @@
     </header>
     <main>
         <a href="./index.html">Back To Home</a>
-        <div id="tableContainer">
-            <!-- <table>
-                <tr>
-                    <th>HOUR</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                    <th>thTest</th>
-                </tr>
-                <tr>
-                    <th>thTest</th>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                    <td>tdTest</td>
-                </tr>
-            </table> -->
-            <table id="mainTable">
+        <form action="" id='mainForm'>
+            <fieldset>
+                <legend>Add Another Store</legend>
+                <label for="name">Name :</label>
+                <input type="text" name="name" id="name" required autocomplete="off">
+                <br>
+                <label for="minNoOfCustomer">Min Number Of Customers :</label>
+                <input type="number" name="minNoOfCustomer" id="minNoOfCustomer" required autocomplete="off">
+                <br>
+                <label for="maxNoOfCustomer">Max Number Of Customers :</label>
+                <input type="number" name="maxNoOfCustomer" id="maxNoOfCustomer" required autocomplete="off">
+                <br>
+                <label for="avgNumberCookies">Avg Cookies Per Customer :</label>
+                <input type="number" name="avgNumberCookies" id="avgNumberCookies" step=".5" required
+                    autocomplete="off">
+                <br>
+                <input type="submit" value="Add Store">
 
-            </table>
-        </div>
-        <div id="container">
+            </fieldset>
+        </form>
+        <table id="mainTable">
 
-        </div>
+        </table>
+
+
+
 
     </main>
     <footer>
